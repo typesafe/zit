@@ -9,5 +9,13 @@
       "program": "zig",
       "args": ["run", "${workspaceRoot}/src/main.zig", "--", "init"]
     },
+    {
+      "name": "cat-file",
+      "type": "lldb",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "program": "zig",
+      "args": ["run", "src/main.zig", "--", "cat-file", "-p", "098586aaa8499dfe6b9832eb28a0ebe14cb11253"]
+    },
   ]
 }
