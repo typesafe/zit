@@ -1,7 +1,9 @@
 const std = @import("std");
 const stdout = std.io.getStdOut().writer();
 
-pub fn exec(id: []const u8) !void {
+pub fn exec(args: [][]const u8) !void {
+    _ = args[0]; // -p
+    const id = args[1];
     const cwd = std.fs.cwd();
     var buf: [std.fs.max_path_bytes]u8 = undefined;
     const path = try std.fmt.bufPrint(&buf, "./.git/objects/{s}/{s}", .{ id[0..2], id[2..] });
@@ -18,7 +20,7 @@ pub fn exec(id: []const u8) !void {
         }
     }
 
-    while (try content.next()) |b| {
+    while (content.next() catch null) |b| {
         _ = try stdout.write(b);
     }
 }

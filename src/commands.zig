@@ -17,8 +17,7 @@ pub const Command = struct {
         }
 
         if (std.mem.eql(u8, args[1], "cat-file")) {
-            _ = args[2]; // TODO option
-            return commands.cat_file.exec(args[3]);
+            return commands.cat_file.exec(args[2..]);
         }
 
         return error.InvalidCommand;
