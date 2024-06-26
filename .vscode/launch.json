@@ -13,9 +13,17 @@
       "name": "cat-file",
       "type": "lldb",
       "request": "launch",
-      "cwd": "${workspaceRoot}",
+      "cwd": "${workspaceRoot}/test_dir",
       "program": "zig",
-      "args": ["run", "src/main.zig", "--", "cat-file", "-p", "098586aaa8499dfe6b9832eb28a0ebe14cb11253"]
+      "args": ["run", "${workspaceRoot}/src/main.zig", "--", "cat-file", "-p", "d591d69d160c69e1a643ed0997b1db6bd5e53905"]
+    },
+    {
+      "name": "hash-object",
+      "type": "lldb",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/test_dir",
+      "program": "zig",
+      "args": ["run", "${workspaceRoot}/src/main.zig", "--", "hash-object", "-w", "test.txt"]
     },
   ]
 }

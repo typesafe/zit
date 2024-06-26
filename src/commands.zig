@@ -4,6 +4,7 @@ const stdout = std.io.getStdOut().writer();
 const commands = .{
     .init = @import("./commands/InitCommand.zig"),
     .cat_file = @import("./commands/CatFileCommand.zig"),
+    .hash_object = @import("./commands/HashObjectCommand.zig"),
 };
 
 pub const Command = struct {
@@ -20,6 +21,9 @@ pub const Command = struct {
             return commands.cat_file.exec(args[2..]);
         }
 
+        if (std.mem.eql(u8, args[1], "hash-object")) {
+            return commands.hash_object.exec(args[2..]);
+        }
         return error.InvalidCommand;
     }
 };
