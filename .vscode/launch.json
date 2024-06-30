@@ -32,5 +32,13 @@
       "program": "zig",
       "args": ["run", "src/main.zig", "--", "ls-tree", "--name-only", "bc1a785082a995c557588654267c2da5e6c367e6"]
     },
+    {
+      "name": "write-tree",
+      "type": "lldb",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/test_dir",
+      "program": "zig",
+      "args": ["run", "${workspaceRoot}/src/main.zig", "--", "write-tree"]
+    }
   ]
 }
