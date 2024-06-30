@@ -25,5 +25,12 @@
       "program": "zig",
       "args": ["run", "${workspaceRoot}/src/main.zig", "--", "hash-object", "-w", "test.txt"]
     },
+    {
+      "name": "ls-tree",
+      "type": "lldb",
+      "request": "launch",
+      "program": "zig",
+      "args": ["run", "src/main.zig", "--", "ls-tree", "--name-only", "bc1a785082a995c557588654267c2da5e6c367e6"]
+    },
   ]
 }

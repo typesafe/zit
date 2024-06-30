@@ -10,5 +10,5 @@ pub fn main() !void {
     const args = try std.process.argsAlloc(allocator);
     defer std.process.argsFree(allocator, args);
 
-    try Command.exec(args);
+    try Command.exec(args, allocator);
 }
