@@ -1,6 +1,53 @@
 const std = @import("std");
 const stdout = std.io.getStdOut().writer();
 
+pub const CommitOptions = struct {
+    message: []const u8,
+    parent: ?[]const u8 = null,
+};
+
+pub fn commitTree(tree_hash: []const u8, options: CommitOptions, allocator: std.mem.Allocator) ![20]u8 {
+    var cwd = std.fs.cwd();
+    var content = std.ArrayList(u8).init(allocator);
+    defer content.deinit();
+
+    const writer = content.writer();
+
+    try writer.print("tree {s}\n", .{tree_hash});
+    if (options.parent) |p| {
+        try writer.print("parent {s}\n", .{p});
+    }
+    try writer.print("author Gino Heyman <gino.heyman@gmail.com> {} +0100\n", .{std.time.epoch});
+    try writer.print("committer  Gino Heyman <gino.heyman@gmail.com> {} +0100\n", .{std.time.epoch});
+    try writer.print("\n{s}\n", .{options.message});
+
+    const size: usize = content.items.len;
+
+    var sha1 = std.crypto.hash.Sha1.init(.{});
+    try sha1.writer().print("commit {}\x00", .{size});
+    sha1.update(content.items);
+    const hash = sha1.finalResult();
+
+    const target_path = try getObjectPath(hash);
+    const dir = target_path[0..17];
+    cwd.makeDir(dir) catch |err| {
+        switch (err) {
+            error.PathAlreadyExists => {},
+            else => return err,
+        }
+    };
+
+    const target_file = try cwd.createFile(&target_path, .{ .truncate = true });
+    defer target_file.close();
+
+    var comp = try std.compress.zlib.compressor(target_file.writer(), .{});
+    try comp.writer().print("commit {}\x00", .{size});
+    _ = try comp.write(content.items);
+    try comp.finish();
+
+    return hash;
+}
+
 pub fn writeTree(path: []const u8, allocator: std.mem.Allocator) ![20]u8 {
     var cwd = std.fs.cwd();
 
