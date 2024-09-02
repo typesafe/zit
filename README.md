@@ -3,7 +3,7 @@
 This is a starting point for Zig solutions to the
 [﻿"Build Your Own Git" Challenge](https://codecrafters.io/challenges/git).
 
-![Figure 2](/.eraser/QOW47W3nLNkigPzSzJXk___fHNVyjOTUFgRZBn5Q9cYoAfuESw1___---figure---iHoYfhJW8ROEKKJ45PqmB---figure---SlHpUb5leLCDdjLqMC4L-g.png "Figure 2")
+![Figure 2](/.eraser/QOW47W3nLNkigPzSzJXk___fHNVyjOTUFgRZBn5Q9cYoAfuESw1___---figure---HHRCOchP2kQDFO8AAkzYH---figure---SlHpUb5leLCDdjLqMC4L-g.png "Figure 2")
 
 In this challenge, you'll build a small Git implementation that's capable of
 initializing a repository, creating commits and cloning a public repository.
@@ -13,7 +13,7 @@ commits, trees etc.), Git's transfer protocols and more.
 **Note**: If you're viewing this repo on GitHub, head over to
 [﻿codecrafters.io](https://codecrafters.io/) to try the challenge.
 
-![Figure 1](/.eraser/QOW47W3nLNkigPzSzJXk___fHNVyjOTUFgRZBn5Q9cYoAfuESw1___---figure---Q6mFGsZyzUz8kEJp94FlD---figure---jgKg8DYNmpiZ8M1tmu6SKw.png "Figure 1")
+![Figure 1](/.eraser/QOW47W3nLNkigPzSzJXk___fHNVyjOTUFgRZBn5Q9cYoAfuESw1___---figure---ruepKKvqCUQgdZM8IxKBD---figure---jgKg8DYNmpiZ8M1tmu6SKw.png "Figure 1")
 
 # Passing the first stage
 The entry point for your Git implementation is in `src/main.zig`. Study and
